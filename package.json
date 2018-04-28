@@ -5,25 +5,25 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "clean": "rm -rf dist docs && mkdir docs",
-    "test": "NODE_ENV=test nyc --reporter=lcov mocha",
-    "itest": "NODE_ENV=test nyc --reporter=lcov --report-dir=icoverage mocha itest",
+    "build": "tsc",
+    "buildstart": "yarn build && yarn start",
+    "clean": "rm -rf dist",
+    "test": "NODE_ENV=test nyc mocha --require ts-node/register --require test/helper 'test/**/*.ts'",
+    "itest": "NODE_ENV=test nyc --report-dir=icoverage mocha --require ts-node/register --require test/helper 'itest/**/*.ts'",
     "coverage": "codecov -f coverage/lcov.info",
-    "lint": "tslint -p . --type-check",
-    "docsapi": "typedoc --out docs/api --theme node_modules/typedoc-clarity-theme/bin  .",
-    "docssite": "jekyll build -s docs-src -p docs-src/_plugins --layouts docs-src/_layouts -d docs && touch docs/.nojekyll",
-    "docsserve": "jekyll serve -s docs-src -p docs-src/_plugins --layouts docs-src/_layouts -d docs",
-    "docs": "npm run docssite && npm run docsapi",
-    "prepublishOnly": "npm run clean && tsc && npm test && npm run lint",
-    "precommit": "npm run lint",
-    "prepush": "node .checkpush.js"
+    "icoverage": "codecov -f icoverage/lcov.info",
+    "lint": "tslint -p .",
+    "prepublishOnly": "yarn run clean && tsc && yarn lint && yarn test",
+    "precommit": "yarn lint",
+    "prepush": "node .checkpush.js",
+    "start": "node dist/index.js"
   },
   "repository": {
     "type": "git",
     "url": "YOURGITREPO"
   },
   "engine": {
-    "node": ">7.0.0"
+    "node": ">8.0.33"
   },
   "files": [
     "dist"
@@ -39,21 +39,19 @@
   "devDependencies": {
     "@types/node": "^8.0.33",
     "@types/source-map-support": "^0.4.0",
-    "co-mocha": "^1.2.0",
-    "codecov": "^2.3.0",
+    "co-mocha": "^1.2.2",
+    "codecov": "^3.0.1",
     "doubleagent": "^1.1.0",
     "husky": "^0.14.3",
-    "mocha": "^4.0.1",
+    "mocha": "^5.1.1",
     "mocha-lcov-reporter": "^1.3.0",
-    "mocha-typescript": "1.1.10",
+    "mocha-typescript": "^1.1.12",
     "must": "^0.13.4",
-    "nyc": "^11.2.1",
-    "ts-node": "3.3.0",
-    "tslint": "^5.7.0",
+    "nyc": "^11.7.1",
+    "ts-node": "^6.0.1",
+    "tslint": "^5.9.1",
     "tslint-config-shopify": "^3.0.1",
-    "typedoc": "^0.9.0",
-    "typedoc-clarity-theme": "^1.1.0",
-    "typescript": "2.5.3"
+    "typescript": "^2.8.3"
   },
   "nyc": {
     "include": [
@@ -69,6 +67,7 @@
     ],
     "reporter": [
       "text-summary",
+      "lcov",
       "html"
     ],
     "sourceMap": true,

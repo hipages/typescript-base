@@ -1,0 +1,2 @@
+require('must');
+require('mocha');

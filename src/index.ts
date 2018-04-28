@@ -1,3 +1,5 @@
+import { Sample } from './Sample';
 
-// Get rid of this... it won't pass linting
-console.log('Hello World!!!');
+const adder = new Sample();
+// tslint:disable-next-line:no-console
+console.log(`Hello, hi ${adder.add(3, 2)}!!!`);

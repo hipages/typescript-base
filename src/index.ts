@@ -1,5 +1,8 @@
-import { Sample } from './Sample';
+import { InceptumApp, WebPlugin } from 'inceptum';
+import * as path from 'path';
 
-const adder = new Sample();
-// tslint:disable-next-line:no-console
-console.log(`Hello, hi ${adder.add(3, 2)}!!!`);
+const app = new InceptumApp();
+app.use(new WebPlugin());
+app.addDirectory(path.join(__dirname, 'controller'));
+app.addDirectory(path.join(__dirname, 'service'));
+app.start();

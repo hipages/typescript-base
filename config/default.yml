@@ -1,0 +1,24 @@
+app:
+  name: Base Application
+  context:
+    name: BaseContext
+  server:
+    port: 3000
+  admin:
+    port: 3001
+
+logging:
+  streams:
+    console:
+      type: console
+    json:
+      type: json
+  loggers:
+    - name: ROOT
+      streams:
+        console: debug
+        json: off
+    - name: ioc/
+      streams:
+        console: debug
+        json: off

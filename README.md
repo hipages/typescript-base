@@ -46,7 +46,12 @@ $ git commit -a -m "Moved to typescript-base"
 $ yarn install # Or npm install... whatever you prefer... I prefer yarn
 ```
 
-Hot to update my project to the latest project definition
+How to setup an Inceptum App
+----
+If you're creating an [Inceptum](https://inceptum.io/) based app, you can follow the instructions ahead, but on the lines where you were doing a git pull from `typescript-base master` replace that with `typescript inceptum-base`.
+
+
+How to update my project to the latest project definition
 ---
 Ok, you did what you had to do and now you've realised that we decided to do something a bit different. How do you update your project?  **Simple!**
 

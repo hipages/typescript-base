@@ -1,7 +1,7 @@
-Typescript Base
+Typescript Base - Inceptum
 ====
 
-This is a base project you can use to create your Typescript projects.
+This is a base project you can use to create your Inceptum projects.
 
 This is what we use at [hipages](https://www.hipages.com.au) for our internal projects.
 
